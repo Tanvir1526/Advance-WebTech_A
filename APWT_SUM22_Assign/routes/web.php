@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\userController;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\MailSender;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,4 +23,8 @@ Route::post('/register/submit',[userController::class,'regSubmit'])->name('regSu
 Route::get('/Admin/Dashborad',[userController::class,'admindashboard'])->name('admin.dashboard');
 Route::get('/user/Dashborad',[userController::class,'userdashboard'])->name('user.dashboard');
 Route::get('/user/details/{id}', [userController::class, 'details'])->name('user.details');
+
+Route::get('/sendmail', function(){
+    return Mail::to(['astro.tanvir70@gmail.com'])->send(new MailSender('Moja OTT Email Varifiaction',random_int(100000,999999)));
+});
 
